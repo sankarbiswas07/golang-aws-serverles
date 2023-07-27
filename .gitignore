@@ -1,0 +1,35 @@
+# Go specific files
+*.exe
+*.dll
+*.so
+*.dylib
+*.test
+
+# Compiled output
+*.out
+*.test
+
+# Go binary
+/bin/
+
+# Go dependencies
+/vendor/
+/Godeps/
+/Godeps.json
+
+# AWS SAM (Serverless Application Model) build artifacts
+.saws-sam/
+samconfig.toml
+
+# Compiled AWS Lambda functions
+/.aws-sam/
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+*~
+
+# macOS files
+.DS_Store
