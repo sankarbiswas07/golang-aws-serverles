@@ -8,9 +8,16 @@ import(
 
 	"github.com/sankarbiswas07/golang-aws-serverles/pkg"
 
-	"github.com/aws/aws-sdk-go/service/lambda"
+	"github.com/aws/aws-lambda-go/lambda"
+	"github.com/aws/aws-lambda-go/events"
+
+	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
+)
+
+var (
+	dynaClient dynamodb.DynamoDBAPI
 )
 
 func main()  {
@@ -22,7 +29,7 @@ func main()  {
 	if err!= nil{
 		return
 	}
-	dynaClient := dynamodb.New(awsSession)
+	dynaClient = dynamodb.New(awsSession)
   lambda.Start(lambdaHandler)
 }
 
