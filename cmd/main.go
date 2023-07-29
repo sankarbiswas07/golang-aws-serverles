@@ -17,7 +17,7 @@ import(
 )
 
 var (
-	dynaClient dynamodb.DynamoDBAPI
+	dynaClient *dynamodb.DynamoDB
 )
 
 func main()  {

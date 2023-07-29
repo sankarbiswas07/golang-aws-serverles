@@ -13,25 +13,33 @@ import(
 	"github.com/sankarbiswas07/golang-aws-serverles/pkg/user"
 )
 
-func CreateUser(){
+var (
+	ErrorMethodNotAllowed = "method not allowed"
+)
+
+type ErrorBody struct{
+	ErrorMsg *string `json: "error, remove empty"`
+}
+
+func CreateUser(ctx context.Context, request events.APIGatewayProxyRequest, tableName string, dynaClient *dynamodb.DynamoDB)(*http.APIGatewayProxyResponse, error){
 
 }
 
-func GetUser(){
+func GetUser(ctx context.Context, request events.APIGatewayProxyRequest, tableName string, dynaClient *dynamodb.DynamoDB)(*http.APIGatewayProxyResponse, error){
 	
 }
 
-func UpdateUser(){
+func UpdateUser(ctx context.Context, request events.APIGatewayProxyRequest, tableName string, dynaClient *dynamodb.DynamoDB)(*http.APIGatewayProxyResponse, error){
 	
 }
 
-func DeleteUser(){
+func DeleteUser(ctx context.Context, request events.APIGatewayProxyRequest, tableName string, dynaClient *dynamodb.DynamoDB)(*http.APIGatewayProxyResponse, error){
 	
 }
-func UnhandledMethod(){
+func UnhandledMethod()(*http.APIGatewayProxyResponse, error){
 	return events.APIGatewayProxyResponse{
 		StatusCode: http.StatusMethodNotAllowed,
 		Headers:    map[string]string{"Content-Type": "text/plain"},
-		Body:       "Method not allowed",
+		Body:       ErrorMethodNotAllowed,
 	}, nil
 }
