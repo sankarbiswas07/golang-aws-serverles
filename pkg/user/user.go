@@ -46,7 +46,7 @@ func FetchUser(email string, tableName string, dynaClient *dynamodb.DynamoDB)(*U
 		return nil, errors.New(ErrorFailedToFetchRecord)
 	}
 	item := new(User)
-	err = dynamodbattribute.Unmarshal(result.Items, item)
+	err = dynamodbattribute.UnmarshalMap(result.Item, item)
 	if err != nil {
 				return nil, errors.New(ErrorFailedToUnmarshalRecord)
 	}
@@ -54,7 +54,7 @@ func FetchUser(email string, tableName string, dynaClient *dynamodb.DynamoDB)(*U
 	return item, nil
 }
 
-func FetchUsers(tableName string, dynaClient *dynamodb.DynamoDB)([]User, error){
+func FetchUsers(tableName string, dynaClient *dynamodb.DynamoDB)(*[]User, error){
 	input := &dynamodb.ScanInput{
 		TableName: aws.String(tableName),
 	}
@@ -63,13 +63,13 @@ func FetchUsers(tableName string, dynaClient *dynamodb.DynamoDB)([]User, error){
 	if err != nil {
 		return nil, errors.New(ErrorFailedToFetchRecord)
 	}
-	item := new([]User)
-	err = dynamodbattribute.UnmarshalList(result.Items, item)
+	items := new([]User)
+	err = dynamodbattribute.UnmarshalListOfMaps(result.Items, &items)
 	if err != nil {
 				return nil, errors.New(ErrorFailedToUnmarshalRecord)
 	}
 
-	return item, nil
+	return items, nil
 }
 
 func CreateUser(req events.APIGatewayProxyRequest, tableName string, dynaClient *dynamodb.DynamoDB)(*User, error){
@@ -133,7 +133,7 @@ func UpdateUser(req events.APIGatewayProxyRequest, tableName string, dynaClient 
 	return &u, nil
 }
 
-func DeleteUser(req events.APIGatewayProxyRequest, tableName string, dynaClient *dynamodb.DynamoDB) error{
+func DeleteUser(req events.APIGatewayProxyRequest, tableName string, dynaClient *dynamodb.DynamoDB) error {
 	email := req.QueryStringParameters["email"]
 	input := &dynamodb.DeleteItemInput{
 		Key: map[string]*dynamodb.AttributeValue{
