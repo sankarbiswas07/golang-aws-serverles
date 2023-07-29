@@ -38,22 +38,18 @@ const tableName = "test-user"
 func lambdaHandler(ctx context.Context, request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 	switch request.HTTPMethod {
 		case http.MethodPost:
-			return handlers.postUser(ctx, request, tableName, dynaClient)
+			return handlers.CreateUser(ctx, request, tableName, dynaClient)
 
 		case http.MethodGet:
-			return handlers.getUser(ctx, request, tableName, dynaClient)
+			return handlers.GetUser(ctx, request, tableName, dynaClient)
 
 		case http.MethodPut:
-			return handlers.putUser(ctx, request, tableName, dynaClient)
+			return handlers.UpdateUser(ctx, request, tableName, dynaClient)
 
 		case http.MethodDelete:
-			return handlers.deleteUser(ctx, request, tableName, dynaClient)
+			return handlers.DeleteUser(ctx, request, tableName, dynaClient)
 
 		default:
-			return events.APIGatewayProxyResponse{
-				StatusCode: http.StatusMethodNotAllowed,
-				Headers:    map[string]string{"Content-Type": "text/plain"},
-				Body:       "Method not allowed",
-			}, nil
+			return handlers.UnhandledMethod()
 	}
 }
