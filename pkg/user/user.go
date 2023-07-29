@@ -1,2 +1,29 @@
-// combination of my models and controllers.
-// this will talk to the database.
+package user
+
+import(
+
+)
+
+var(
+
+)
+
+func FetchUser()(){
+
+}
+
+func FetchUsers()(){
+	
+}
+
+func CreateUser()(){
+	
+}
+
+func UpdateUser(){
+	
+}
+
+func DeleteUser() error{
+	// return fmt.Errorf("user.go: DeleteUser(): %w", err)
+}

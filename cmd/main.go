@@ -6,7 +6,7 @@ import(
 	"fmt"
 	"net/http"
 
-	"github.com/sankarbiswas07/golang-aws-serverles/pkg"
+	"github.com/sankarbiswas07/golang-aws-serverles/pkg/handlers"
 
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/aws/aws-lambda-go/events"
