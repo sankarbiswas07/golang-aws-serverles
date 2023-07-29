@@ -8,7 +8,7 @@ var(
 
 )
 
-func FetchUser()(){
+func FetchUser(email, tableName, dynaClient)(){
 
 }
 
