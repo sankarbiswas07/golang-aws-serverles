@@ -1,10 +1,10 @@
-package validator
+package validators
 
 import (
 	"regexp"
 )
 
-func isValidEmail(email string) bool {
+func IsValidEmail(email string) bool {
 	// Regular expression pattern for validating email addresses
 	emailRegex := `^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`
 
